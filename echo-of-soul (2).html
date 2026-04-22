@@ -18,7 +18,8 @@
   }
 
   html, body {
-    width: 100%; height: 100%;
+    width: 100%;
+    height: 100%;
     background: #1a1f1e;
     color: var(--white);
     font-family: 'Space Mono', monospace;
@@ -35,7 +36,8 @@
   }
 
   .bg {
-    position: absolute; inset: 0;
+    position: absolute;
+    inset: 0;
     background:
       radial-gradient(ellipse 80% 60% at 20% 40%, #2c3a35 0%, transparent 60%),
       radial-gradient(ellipse 60% 80% at 70% 60%, #1e2a28 0%, transparent 55%),
@@ -45,83 +47,143 @@
   }
 
   .mist-layer {
-    position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
   }
-  .mist-layer::before, .mist-layer::after {
+
+  .mist-layer::before,
+  .mist-layer::after {
     content: '';
     position: absolute;
     border-radius: 50%;
     filter: blur(60px);
     opacity: 0.18;
   }
+
   .mist-layer::before {
-    width: 70vw; height: 50vh;
+    width: 70vw;
+    height: 50vh;
     background: radial-gradient(ellipse, #7a9e98, transparent 70%);
-    top: 10%; left: -10%;
+    top: 10%;
+    left: -10%;
     animation: drift1 18s ease-in-out infinite alternate;
   }
+
   .mist-layer::after {
-    width: 50vw; height: 40vh;
+    width: 50vw;
+    height: 40vh;
     background: radial-gradient(ellipse, #5a7a80, transparent 70%);
-    top: 30%; right: -5%;
+    top: 30%;
+    right: -5%;
     animation: drift2 22s ease-in-out infinite alternate;
   }
-  @keyframes drift1 { from { transform: translateX(0) translateY(0); } to { transform: translateX(8vw) translateY(-4vh); } }
-  @keyframes drift2 { from { transform: translateX(0) translateY(0); } to { transform: translateX(-6vw) translateY(5vh); } }
+
+  @keyframes drift1 {
+    from { transform: translateX(0) translateY(0); }
+    to { transform: translateX(8vw) translateY(-4vh); }
+  }
+
+  @keyframes drift2 {
+    from { transform: translateX(0) translateY(0); }
+    to { transform: translateX(-6vw) translateY(5vh); }
+  }
 
   .swoosh {
-    position: absolute; inset: 0; z-index: 2; pointer-events: none;
-    width: 100%; height: 100%;
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
   }
+
   .swoosh path {
     fill: none;
     stroke: rgba(245,245,240,0.18);
     stroke-width: 1;
     stroke-linecap: round;
   }
-  .swoosh path:nth-child(2) { stroke-width: 0.8; opacity: 0.7; }
-  .swoosh path:nth-child(3) { stroke-width: 0.6; opacity: 0.5; }
+
+  .swoosh path:nth-child(2) {
+    stroke-width: 0.8;
+    opacity: 0.7;
+  }
+
+  .swoosh path:nth-child(3) {
+    stroke-width: 0.6;
+    opacity: 0.5;
+  }
 
   .mountain {
-    position: absolute; bottom: 0; left: 0; width: 100%; z-index: 3;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 3;
     pointer-events: none;
   }
 
   nav {
-    position: relative; z-index: 10;
-    display: flex; align-items: center; justify-content: space-between;
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 20px 32px;
     animation: fadeDown 1s ease 0.2s both;
   }
-  @keyframes fadeDown { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: translateY(0); } }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 
   .nav-logo {
     font-family: 'Space Mono', monospace;
-    font-size: 10px; font-weight: 700;
+    font-size: 10px;
+    font-weight: 700;
     letter-spacing: 0.08em;
     line-height: 1.4;
     text-transform: uppercase;
     color: var(--white);
   }
+
   .nav-logo span { display: block; }
 
   .nav-links {
-    display: flex; gap: 48px;
+    display: flex;
+    gap: 48px;
     list-style: none;
-    font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
     color: var(--mist);
   }
-  .nav-links li { cursor: pointer; transition: color 0.3s; }
+
+  .nav-links li {
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+
   .nav-links li:hover { color: var(--white); }
 
   .title-block {
-    position: absolute; z-index: 8;
-    bottom: 28%; left: 50%; transform: translateX(-50%);
+    position: absolute;
+    z-index: 8;
+    bottom: 28%;
+    left: 50%;
+    transform: translateX(-50%);
     text-align: center;
     width: 100%;
     animation: fadeUp 1.2s ease 0.5s both;
   }
-  @keyframes fadeUp { from { opacity: 0; transform: translateX(-50%) translateY(20px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+  }
 
   .main-title {
     font-family: 'Bebas Neue', sans-serif;
@@ -144,8 +206,10 @@
   }
 
   .handwritten {
-    position: absolute; z-index: 9;
-    bottom: 18%; right: 12%;
+    position: absolute;
+    z-index: 9;
+    bottom: 18%;
+    right: 12%;
     font-family: 'Instrument Serif', serif;
     font-style: italic;
     font-size: 12px;
@@ -157,42 +221,62 @@
   }
 
   .soul-btn-wrap {
-    position: absolute; z-index: 12;
-    bottom: 5%; left: 50%; transform: translateX(-50%);
+    position: absolute;
+    z-index: 12;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
     animation: fadeUp2 1.5s ease 1s both;
   }
-  @keyframes fadeUp2 { from { opacity: 0; transform: translateX(-50%) translateY(10px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+
+  @keyframes fadeUp2 {
+    from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+  }
 
   .soul-btn {
     background: none;
     border: 1px solid rgba(245,245,240,0.25);
     color: var(--mist);
     font-family: 'Space Mono', monospace;
-    font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
     padding: 12px 28px;
     cursor: pointer;
     position: relative;
     overflow: hidden;
     transition: color 0.4s, border-color 0.4s;
   }
+
   .soul-btn::before {
     content: '';
-    position: absolute; inset: 0;
+    position: absolute;
+    inset: 0;
     background: rgba(245,245,240,0.05);
     transform: translateX(-100%);
     transition: transform 0.4s ease;
   }
+
   .soul-btn:hover::before { transform: translateX(0); }
-  .soul-btn:hover { color: var(--white); border-color: rgba(245,245,240,0.6); }
+
+  .soul-btn:hover {
+    color: var(--white);
+    border-color: rgba(245,245,240,0.6);
+  }
 
   .modal-overlay {
     display: none;
-    position: fixed; inset: 0; z-index: 100;
+    position: fixed;
+    inset: 0;
+    z-index: 100;
     background: rgba(10,14,13,0.92);
     backdrop-filter: blur(12px);
-    align-items: center; justify-content: center;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
   }
+
   .modal-overlay.active { display: flex; }
 
   .modal {
@@ -203,7 +287,11 @@
     text-align: center;
     animation: modalIn 0.5s cubic-bezier(0.16,1,0.3,1) both;
   }
-  @keyframes modalIn { from { opacity: 0; transform: translateY(30px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+  @keyframes modalIn {
+    from { opacity: 0; transform: translateY(30px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
 
   .modal-question {
     font-family: 'Instrument Serif', serif;
@@ -213,19 +301,26 @@
     margin-bottom: 10px;
     line-height: 1.4;
   }
+
   .modal-sub {
-    font-size: 10px; letter-spacing: 0.15em;
-    color: var(--mist); text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--mist);
+    text-transform: uppercase;
     margin-bottom: 40px;
   }
 
   .score-grid {
-    display: flex; flex-wrap: wrap; gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
     justify-content: center;
     margin-bottom: 32px;
   }
+
   .score-btn {
-    width: 46px; height: 46px;
+    width: 46px;
+    height: 46px;
     border: 1px solid rgba(245,245,240,0.2);
     background: none;
     color: var(--mist);
@@ -234,12 +329,15 @@
     cursor: pointer;
     transition: all 0.25s;
   }
-  .score-btn:hover, .score-btn.selected {
+
+  .score-btn:hover,
+  .score-btn.selected {
     background: rgba(245,245,240,0.08);
     border-color: var(--white);
     color: var(--white);
     transform: scale(1.08);
   }
+
   .score-btn.selected {
     background: rgba(200,216,232,0.15);
     border-color: var(--accent);
@@ -253,7 +351,12 @@
     padding-top: 28px;
     margin-top: 4px;
   }
-  @keyframes riseIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  @keyframes riseIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
   .result-area.active { display: block; }
 
   .result-score-display {
@@ -263,10 +366,15 @@
     line-height: 1;
     margin-bottom: 4px;
   }
+
   .result-score-label {
-    font-size: 9px; letter-spacing: 0.2em; color: var(--mist);
-    text-transform: uppercase; margin-bottom: 20px;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--mist);
+    text-transform: uppercase;
+    margin-bottom: 20px;
   }
+
   .result-quote {
     font-family: 'Instrument Serif', serif;
     font-style: italic;
@@ -275,39 +383,102 @@
     line-height: 1.7;
     min-height: 60px;
   }
+
   .loading-anim::after {
     content: '';
     animation: ldots 1.2s steps(4, end) infinite;
   }
-  @keyframes ldots { 0%{content:''} 25%{content:'.'} 50%{content:'..'} 75%{content:'...'} 100%{content:''} }
+
+  @keyframes ldots {
+    0% { content: ''; }
+    25% { content: '.'; }
+    50% { content: '..'; }
+    75% { content: '...'; }
+    100% { content: ''; }
+  }
 
   .modal-close {
     margin-top: 28px;
-    background: none; border: none;
-    color: var(--mist); font-family: 'Space Mono', monospace;
-    font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
-    cursor: pointer; transition: color 0.3s;
+    background: none;
+    border: none;
+    color: var(--mist);
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color 0.3s;
   }
+
   .modal-close:hover { color: var(--white); }
 
   .qr-corner {
-    position: absolute; z-index: 9;
-    bottom: 14%; left: 5%;
+    position: absolute;
+    z-index: 9;
+    bottom: 14%;
+    left: 5%;
     opacity: 0.4;
-    font-size: 8px; letter-spacing: 0.12em;
+    font-size: 8px;
+    letter-spacing: 0.12em;
     color: var(--mist);
     text-transform: uppercase;
-    display: flex; align-items: center; gap: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
+
   .qr-box {
-    width: 36px; height: 36px;
+    width: 36px;
+    height: 36px;
     border: 1px solid rgba(245,245,240,0.3);
-    display: grid; grid-template-columns: repeat(5,1fr); gap: 1px;
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    gap: 1px;
     padding: 3px;
   }
-  .qr-box span { background: rgba(245,245,240,0.6); border-radius: 1px; }
+
+  .qr-box span {
+    background: rgba(245,245,240,0.6);
+    border-radius: 1px;
+  }
+
   .qr-box span:nth-child(odd) { background: transparent; }
   .qr-box span:nth-child(3n) { background: rgba(245,245,240,0.8); }
+
+  @media (max-width: 768px) {
+    nav {
+      padding: 16px 18px;
+      flex-direction: column;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .nav-links {
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 9px;
+    }
+
+    .handwritten {
+      right: 7%;
+      bottom: 20%;
+      font-size: 10px;
+    }
+
+    .qr-corner {
+      left: 4%;
+      bottom: 10%;
+    }
+
+    .modal {
+      padding: 34px 20px;
+    }
+
+    .score-btn {
+      width: 42px;
+      height: 42px;
+    }
+  }
 </style>
 </head>
 <body>
@@ -389,40 +560,15 @@
 </div>
 
 <script>
-const grid = document.getElementById('scoreGrid');
-for (let i = 0; i <= 10; i++) {
-  const btn = document.createElement('button');
-  btn.className = 'score-btn';
-  btn.textContent = i;
-  btn.onclick = () => selectScore(i, btn);
-  grid.appendChild(btn);
-}
+  const grid = document.getElementById('scoreGrid');
 
-function openModal() {
-  document.getElementById('modalOverlay').classList.add('active');
-  document.getElementById('resultArea').classList.remove('active');
-  document.querySelectorAll('.score-btn').forEach(b => b.classList.remove('selected'));
-}
-
-function closeModal() {
-  document.getElementById('modalOverlay').classList.remove('active');
-}
-
-async function selectScore(score, btn) {
-  document.querySelectorAll('.score-btn').forEach(b => b.classList.remove('selected'));
-  btn.classList.add('selected');
-
-  const resultArea = document.getElementById('resultArea');
-  const resultScore = document.getElementById('resultScore');
-  const resultQuote = document.getElementById('resultQuote');
-
-  resultScore.textContent = score;
-  document.getElementById('resultScoreLabel').textContent = `өнөөдрийг 0–10 оноонд дүгнэвэл ${score}`;
-  resultQuote.innerHTML = '<span class="loading-anim">уншиж байна</span>';
-  resultArea.classList.add('active');
-
-  const binarySeeds = ['10110100','01101001','11001010','00110111','10011101','01010110','11100011','00101110','10001011','01110100','11010001'];
-  const usedBinary = binarySeeds[score];
+  for (let i = 0; i <= 10; i++) {
+    const btn = document.createElement('button');
+    btn.className = 'score-btn';
+    btn.textContent = i;
+    btn.onclick = () => selectScore(i, btn);
+    grid.appendChild(btn);
+  }
 
   const scoreContexts = [
     'Маш хэцүү өдөр байсан. Бүх зүйл дарамттай, ядарсан.',
@@ -438,46 +584,239 @@ async function selectScore(score, btn) {
     'Төгс өдөр. Амьдрал гэж энэ юм байна гэж мэдэрсэн.'
   ];
 
-  const prompt = `Хүн өнөөдрөө ${score}/10 оноогоор үнэллээ. Утга: ${scoreContexts[score]}
+  const localQuotes = {
+    0: [
+      'Өнөөдөр хүнд байсан ч чи тэссэн нь өөрөө том зүйл.',
+      'Ядарсан өдрөө давж гарна гэдэг бас хүчний нэг хэлбэр.',
+      'Бүх зүйл нурсан мэт санагдсан ч чи энд хүртэл ирсэн байна.',
+      '0 оноотой өдөр ч амьдрал дууссан гэсэн үг биш.',
+      'Өнөөдрийн бараан мэдрэмж маргаашийн бүхнийг шийдэхгүй.'
+    ],
+    1: [
+      'Чи бараг сөхөрсөн ч бүрэн бууж өгөөгүй байна.',
+      'Багахан ч гэсэн үлдсэн хүч чинь чамайг авч явж байна.',
+      'Хэцүү өдрүүдэд амьсгалаа авч үлдэх нь хүртэл ялалт байдаг.',
+      'Өнөөдөр муу байсан ч чи өөрийгөө орхиогүй.',
+      'Өнөөдөр хүчгүй байсан нь чамайг сул хүн болгохгүй.'
+    ],
+    2: [
+      'Хүнд байсан ч чи дотроо бага ч гэсэн гэрэл хадгалж үлджээ.',
+      'Алхам чинь удаан байсан ч чи зогсоогүй.',
+      'Эвгүй өдөр байсан ч бүхэлдээ хоосон өнгөрөөгүй.',
+      'Өнөөдрийн өвдөлт чамайг бүхэлд нь тодорхойлохгүй.',
+      'Чиний доторх тэсвэр заримдаа дуугүй байдаг.'
+    ],
+    3: [
+      'Төгс биш ч чи өнөөдрийг арай гэж биш, давж гарчээ.',
+      'Бага зэрэг ганхсан ч чи унаагүй.',
+      'Өнөөдөр төвөгтэй байсан ч дотор чинь хүч үлдсэн байна.',
+      'Сэтгэл чинь тогтворгүй байсан ч чи өөрийгөө авч явжээ.',
+      'Эвгүй өдрийг давна гэдэг бас өсөлт юм.'
+    ],
+    4: [
+      'Өнөөдөр чимээгүйхэн өнгөрсөн ч утгагүй байсангүй.',
+      'Яг хүссэн шиг байгаагүй ч бас оргүй өдөр биш байлаа.',
+      'Дундаж өдрүүд ч бас сэтгэлийг амрааж чаддаг.',
+      'Өнөөдөр нэг их гялалзаагүй ч бүрхэгтээ үлдээгүй.',
+      'Чиний өдөр бага багаар тэнцвэрээ олж байна.'
+    ],
+    5: [
+      'Энгийн өдөр байсан ч чамд амсхийх зай өгсөн байх.',
+      'Өнөөдөр онцгой биш ч тайван өнгөрсөн нь бас сайхан.',
+      'Дундаж өдөр бүр хоосон байдаггүй.',
+      'Зүгээр л байсан өдөр ч гэсэн чамд хэрэгтэй байсан байж болно.',
+      'Тайван өнгөрөх нь заримдаа хамгийн зөв хэмнэл байдаг.'
+    ],
+    6: [
+      'Өнөөдөр бага зэрэг гэрэлтэй байж чаджээ.',
+      'Чи зарим зүйл дээр өөрийгөө зөв авч явсан байна.',
+      'Багахан сайхан мэдрэмж ч өдрийг өөрчилж чаддаг.',
+      'Өнөөдрийн жижиг сайн зүйлсийг битгий гол.',
+      'Чи анзаараагүй ч өнөөдөр дотор чинь урагшилсан юм бий.'
+    ],
+    7: [
+      'Чи өнөөдөр өөртэйгөө илүү эвтэй байсан юм шиг байна.',
+      'Сайн өдөр бол заавал төгс өдөр байх албагүй.',
+      'Өнөөдөр амьсгал чинь арай хөнгөн байсан байх.',
+      'Чамд таарсан энэ өдрийн хэмнэлийг хадгалаарай.',
+      'Чи өнөөдөр өөрийнхөөрөө сайхан явжээ.'
+    ],
+    8: [
+      'Өнөөдөр сэтгэлд чинь гэрэл илүү ойрхон байжээ.',
+      'Чиний инээмсэглэл өнөөдөр арай үнэн байсан байх.',
+      'Сайн өдрийг өөрөөсөө нууж битгий өнгөрөө.',
+      'Өнөөдөр чамд амьдрал арай дулаан санагдсан байх.',
+      'Чи өнөөдрийн сайхныг хүртэх эрхтэй байсан.'
+    ],
+    9: [
+      'Ийм өдөр хааяа ирээд дотор чинь итгэл асаадаг.',
+      'Өнөөдөр бүх зүйл чамтай арай илүү эвлэрсэн байх.',
+      'Чиний доторх гэрэл өнөөдөр илүү тод ажиллажээ.',
+      'Сэтгэл ивээсэн өдрөө сайн санаад үлдээ.',
+      'Чи өнөөдөр амьдралтай ойрхон байсан байна.'
+    ],
+    10: [
+      'Ийм өдөр хүний дотор амьдрах хүсэл улам тодордог.',
+      'Өнөөдөр чи амьдралын амтыг бүтнээр нь мэдэрсэн байх.',
+      'Төгс мэдрэмж удаан үргэлжлэхгүй ч дурсамж нь үлддэг.',
+      'Ийм өдрүүд л маргаашийг итгэлтэй болгодог.',
+      'Өнөөдөр чиний сэтгэл бараг дуулж байсан байх.'
+    ]
+  };
 
-Яг ЭНЭ оноонд тохирсон, өвөрмөц нэг монгол өгүүлбэр бич. Энгийн найз мэт, гэхдээ гүнзгий. Хэт гоёмсог, хэт урт биш. Өмнөх оноонуудаас огт өөр өгүүлбэр байх ёстой.
+  const shownQuotes = new Set();
+  const usedBinarySet = new Set();
 
-Дараа нь binary: ${usedBinary}
-
-Яг хоёр мөр л бич:
-1-р мөр: монгол өгүүлбэр
-2-р мөр: ${usedBinary}`;
-
-  try {
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
-        max_tokens: 1000,
-        messages: [{ role: "user", content: prompt }]
-      })
-    });
-    const data = await response.json();
-    const text = data.content.map(i => i.text || '').join('').trim();
-    const lines = text.split('\n').filter(l => l.trim());
-    const quoteLine = lines[0] || 'Өнөөдөр ч гэсэн та нэг алхам урагшилсан.';
-
-    resultQuote.innerHTML = `
-      <div style="margin-bottom:18px;">${quoteLine}</div>
-      <div style="font-family:'Space Mono',monospace; font-size:24px; letter-spacing:0.35em; color:var(--accent); font-style:normal; opacity:0.9;">${usedBinary}</div>
-    `;
-  } catch(e) {
-    resultQuote.innerHTML = `
-      <div style="margin-bottom:18px;">Чи өнөөдөр амьд байна — энэ л хангалттай.</div>
-      <div style="font-family:'Space Mono',monospace; font-size:24px; letter-spacing:0.35em; color:var(--accent); font-style:normal;">${usedBinary}</div>
-    `;
+  function openModal() {
+    document.getElementById('modalOverlay').classList.add('active');
+    document.getElementById('resultArea').classList.remove('active');
+    document.querySelectorAll('.score-btn').forEach(b => b.classList.remove('selected'));
   }
-}
 
-document.getElementById('modalOverlay').addEventListener('click', function(e) {
-  if (e.target === this) closeModal();
-});
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('active');
+  }
+
+  function escapeHTML(str) {
+    return str
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#39;');
+  }
+
+  function getUniqueLocalQuote(score) {
+    const pool = localQuotes[score] || ['Өнөөдөр ч гэсэн чи нэг алхам урагшилсан.'];
+    const available = pool.filter(q => !shownQuotes.has(q));
+
+    let selected;
+    if (available.length > 0) {
+      selected = available[Math.floor(Math.random() * available.length)];
+    } else {
+      selected = pool[Math.floor(Math.random() * pool.length)] + ' ✨';
+    }
+
+    shownQuotes.add(selected);
+    return selected;
+  }
+
+  function generateUniqueBinary(score) {
+    let binary = '';
+    do {
+      const scorePart = score.toString(2).padStart(4, '0');
+      const randomPart = Math.floor(Math.random() * 256).toString(2).padStart(8, '0');
+      binary = `${scorePart}${randomPart}`;
+    } while (usedBinarySet.has(binary));
+
+    usedBinarySet.add(binary);
+    return binary;
+  }
+
+  function parseQuoteFromAPI(data) {
+    if (!data || !Array.isArray(data.content)) return null;
+
+    const text = data.content
+      .map(item => item.text || '')
+      .join('\n')
+      .trim();
+
+    if (!text) return null;
+
+    const lines = text
+      .split('\n')
+      .map(line => line.trim())
+      .filter(Boolean);
+
+    if (!lines.length) return null;
+
+    return lines[0];
+  }
+
+  function normalizeQuote(text) {
+    return text
+      .replace(/^["'“”]+|["'“”]+$/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  function getSafeUniqueQuote(score, apiQuote) {
+    let finalQuote = normalizeQuote(apiQuote || '');
+
+    if (!finalQuote || shownQuotes.has(finalQuote)) {
+      finalQuote = getUniqueLocalQuote(score);
+    } else {
+      shownQuotes.add(finalQuote);
+    }
+
+    return finalQuote;
+  }
+
+  async function selectScore(score, btn) {
+    document.querySelectorAll('.score-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+
+    const resultArea = document.getElementById('resultArea');
+    const resultScore = document.getElementById('resultScore');
+    const resultQuote = document.getElementById('resultQuote');
+    const resultScoreLabel = document.getElementById('resultScoreLabel');
+
+    const usedBinary = generateUniqueBinary(score);
+
+    resultScore.textContent = score;
+    resultScoreLabel.textContent = `өнөөдрийг 0–10 оноонд дүгнэвэл ${score}`;
+    resultQuote.innerHTML = '<span class="loading-anim">уншиж байна</span>';
+    resultArea.classList.add('active');
+
+    const prompt = `Хүн өнөөдрөө ${score}/10 оноогоор үнэллээ.
+Утга: ${scoreContexts[score]}
+
+ЭНЭ ОНООНД ТОХИРСОН, ӨМНӨХӨӨСӨӨ ӨӨР, ӨВӨРМӨЦ, НЭГ Л МӨР МОНГОЛ ӨГҮҮЛБЭР бич.
+Хэт урт биш. Хэт уянгын биш. Энгийн мөртлөө сэтгэлд хүрэхээр байг.
+
+Хоёр дахь мөрөнд яг энэ binary-г давтаж бич:
+${usedBinary}`;
+
+    try {
+      const response = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          model: "claude-sonnet-4-20250514",
+          max_tokens: 120,
+          messages: [
+            { role: "user", content: prompt }
+          ]
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('API response not ok');
+      }
+
+      const data = await response.json();
+      const apiQuote = parseQuoteFromAPI(data);
+      const finalQuote = getSafeUniqueQuote(score, apiQuote);
+
+      resultQuote.innerHTML = `
+        <div style="margin-bottom:18px;">${escapeHTML(finalQuote)}</div>
+        <div style="font-family:'Space Mono',monospace; font-size:24px; letter-spacing:0.35em; color:var(--accent); font-style:normal; opacity:0.9;">${usedBinary}</div>
+      `;
+    } catch (e) {
+      const fallbackQuote = getSafeUniqueQuote(score, null);
+
+      resultQuote.innerHTML = `
+        <div style="margin-bottom:18px;">${escapeHTML(fallbackQuote)}</div>
+        <div style="font-family:'Space Mono',monospace; font-size:24px; letter-spacing:0.35em; color:var(--accent); font-style:normal; opacity:0.9;">${usedBinary}</div>
+      `;
+    }
+  }
+
+  document.getElementById('modalOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
 </script>
 </body>
 </html>
