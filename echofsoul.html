@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Echo of Soul — ХҮН БАЙХУЙ ТӨСӨЛ</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --white: #f5f5f0;
+    --ice: rgba(245,245,240,0.85);
+    --mist: rgba(245,245,240,0.45);
+    --ghost: rgba(245,245,240,0.12);
+    --accent: #c8d8e8;
+  }
+
+  html, body {
+    width: 100%; height: 100%;
+    background: #1a1f1e;
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+    overflow-x: hidden;
+  }
+
+  .hero {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 40%, #2c3a35 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 70% 60%, #1e2a28 0%, transparent 55%),
+      radial-gradient(ellipse 100% 50% at 50% 0%, #3a4a48 0%, #151c1b 60%),
+      linear-gradient(180deg, #2a3432 0%, #111918 55%, #0d1413 100%);
+    z-index: 0;
+  }
+
+  .mist-layer {
+    position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  }
+  .mist-layer::before, .mist-layer::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.18;
+  }
+  .mist-layer::before {
+    width: 70vw; height: 50vh;
+    background: radial-gradient(ellipse, #7a9e98, transparent 70%);
+    top: 10%; left: -10%;
+    animation: drift1 18s ease-in-out infinite alternate;
+  }
+  .mist-layer::after {
+    width: 50vw; height: 40vh;
+    background: radial-gradient(ellipse, #5a7a80, transparent 70%);
+    top: 30%; right: -5%;
+    animation: drift2 22s ease-in-out infinite alternate;
+  }
+  @keyframes drift1 { from { transform: translateX(0) translateY(0); } to { transform: translateX(8vw) translateY(-4vh); } }
+  @keyframes drift2 { from { transform: translateX(0) translateY(0); } to { transform: translateX(-6vw) translateY(5vh); } }
+
+  .swoosh {
+    position: absolute; inset: 0; z-index: 2; pointer-events: none;
+    width: 100%; height: 100%;
+  }
+  .swoosh path {
+    fill: none;
+    stroke: rgba(245,245,240,0.18);
+    stroke-width: 1;
+    stroke-linecap: round;
+  }
+  .swoosh path:nth-child(2) { stroke-width: 0.8; opacity: 0.7; }
+  .swoosh path:nth-child(3) { stroke-width: 0.6; opacity: 0.5; }
+
+  .mountain {
+    position: absolute; bottom: 0; left: 0; width: 100%; z-index: 3;
+    pointer-events: none;
+  }
+
+  nav {
+    position: relative; z-index: 10;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 32px;
+    animation: fadeDown 1s ease 0.2s both;
+  }
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: translateY(0); } }
+
+  .nav-logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.08em;
+    line-height: 1.4;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+  .nav-logo span { display: block; }
+
+  .nav-links {
+    display: flex; gap: 48px;
+    list-style: none;
+    font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--mist);
+  }
+  .nav-links li { cursor: pointer; transition: color 0.3s; }
+  .nav-links li:hover { color: var(--white); }
+
+  .title-block {
+    position: absolute; z-index: 8;
+    bottom: 28%; left: 50%; transform: translateX(-50%);
+    text-align: center;
+    width: 100%;
+    animation: fadeUp 1.2s ease 0.5s both;
+  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateX(-50%) translateY(20px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+
+  .main-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(80px, 14vw, 200px);
+    letter-spacing: 0.02em;
+    color: var(--white);
+    line-height: 0.9;
+    text-shadow: 0 2px 40px rgba(0,0,0,0.4);
+    user-select: none;
+  }
+
+  .sub-tagline {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(11px, 1.4vw, 16px);
+    color: var(--mist);
+    letter-spacing: 0.25em;
+    margin-top: 8px;
+    text-transform: lowercase;
+  }
+
+  .handwritten {
+    position: absolute; z-index: 9;
+    bottom: 18%; right: 12%;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 12px;
+    color: rgba(245,245,240,0.5);
+    line-height: 1.6;
+    text-align: center;
+    letter-spacing: 0.05em;
+    pointer-events: none;
+  }
+
+  .soul-btn-wrap {
+    position: absolute; z-index: 12;
+    bottom: 5%; left: 50%; transform: translateX(-50%);
+    animation: fadeUp2 1.5s ease 1s both;
+  }
+  @keyframes fadeUp2 { from { opacity: 0; transform: translateX(-50%) translateY(10px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+
+  .soul-btn {
+    background: none;
+    border: 1px solid rgba(245,245,240,0.25);
+    color: var(--mist);
+    font-family: 'Space Mono', monospace;
+    font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 12px 28px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.4s, border-color 0.4s;
+  }
+  .soul-btn::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: rgba(245,245,240,0.05);
+    transform: translateX(-100%);
+    transition: transform 0.4s ease;
+  }
+  .soul-btn:hover::before { transform: translateX(0); }
+  .soul-btn:hover { color: var(--white); border-color: rgba(245,245,240,0.6); }
+
+  .modal-overlay {
+    display: none;
+    position: fixed; inset: 0; z-index: 100;
+    background: rgba(10,14,13,0.92);
+    backdrop-filter: blur(12px);
+    align-items: center; justify-content: center;
+    flex-direction: column;
+  }
+  .modal-overlay.active { display: flex; }
+
+  .modal {
+    width: min(520px, 90vw);
+    border: 1px solid rgba(245,245,240,0.12);
+    background: rgba(20,28,26,0.9);
+    padding: 48px 40px;
+    text-align: center;
+    animation: modalIn 0.5s cubic-bezier(0.16,1,0.3,1) both;
+  }
+  @keyframes modalIn { from { opacity: 0; transform: translateY(30px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+  .modal-question {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(18px, 3vw, 26px);
+    color: var(--white);
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+  .modal-sub {
+    font-size: 10px; letter-spacing: 0.15em;
+    color: var(--mist); text-transform: uppercase;
+    margin-bottom: 40px;
+  }
+
+  .score-grid {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    justify-content: center;
+    margin-bottom: 32px;
+  }
+  .score-btn {
+    width: 46px; height: 46px;
+    border: 1px solid rgba(245,245,240,0.2);
+    background: none;
+    color: var(--mist);
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .score-btn:hover, .score-btn.selected {
+    background: rgba(245,245,240,0.08);
+    border-color: var(--white);
+    color: var(--white);
+    transform: scale(1.08);
+  }
+  .score-btn.selected {
+    background: rgba(200,216,232,0.15);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .result-area {
+    display: none;
+    animation: riseIn 0.6s ease both;
+    border-top: 1px solid rgba(245,245,240,0.1);
+    padding-top: 28px;
+    margin-top: 4px;
+  }
+  @keyframes riseIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .result-area.active { display: block; }
+
+  .result-score-display {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .result-score-label {
+    font-size: 9px; letter-spacing: 0.2em; color: var(--mist);
+    text-transform: uppercase; margin-bottom: 20px;
+  }
+  .result-quote {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(14px, 2vw, 18px);
+    color: var(--white);
+    line-height: 1.7;
+    min-height: 60px;
+  }
+  .loading-anim::after {
+    content: '';
+    animation: ldots 1.2s steps(4, end) infinite;
+  }
+  @keyframes ldots { 0%{content:''} 25%{content:'.'} 50%{content:'..'} 75%{content:'...'} 100%{content:''} }
+
+  .modal-close {
+    margin-top: 28px;
+    background: none; border: none;
+    color: var(--mist); font-family: 'Space Mono', monospace;
+    font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+    cursor: pointer; transition: color 0.3s;
+  }
+  .modal-close:hover { color: var(--white); }
+
+  .qr-corner {
+    position: absolute; z-index: 9;
+    bottom: 14%; left: 5%;
+    opacity: 0.4;
+    font-size: 8px; letter-spacing: 0.12em;
+    color: var(--mist);
+    text-transform: uppercase;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .qr-box {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(245,245,240,0.3);
+    display: grid; grid-template-columns: repeat(5,1fr); gap: 1px;
+    padding: 3px;
+  }
+  .qr-box span { background: rgba(245,245,240,0.6); border-radius: 1px; }
+  .qr-box span:nth-child(odd) { background: transparent; }
+  .qr-box span:nth-child(3n) { background: rgba(245,245,240,0.8); }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="bg"></div>
+  <div class="mist-layer"></div>
+
+  <svg class="swoosh" viewBox="0 0 1220 680" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M180,600 C220,400 350,200 500,150 C650,100 750,180 800,300 C850,420 820,560 780,640"/>
+    <path d="M220,620 C260,420 390,220 540,170 C690,120 790,200 840,320 C890,440 860,580 820,660"/>
+    <path d="M150,580 C200,370 340,160 490,110 C640,60 740,160 790,280 C840,400 800,550 760,630"/>
+    <path d="M900,50 C950,150 980,280 960,400 C940,520 880,600 820,640 C780,660 740,650 720,620"/>
+    <path d="M960,30 C1010,130 1040,270 1020,390 C1000,510 940,590 870,630"/>
+    <path d="M1000,10 C1060,120 1090,260 1070,380 C1050,500 980,580 910,620"/>
+  </svg>
+
+  <svg class="mountain" viewBox="0 0 1220 300" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="mg" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#1a2a26" stop-opacity="0.9"/>
+        <stop offset="100%" stop-color="#0d1413" stop-opacity="1"/>
+      </linearGradient>
+    </defs>
+    <path d="M0,300 L0,200 C80,170 120,140 180,100 C240,60 260,90 300,120 C340,150 360,80 420,40 C480,0 510,30 560,60 C610,90 640,50 700,70 C760,90 800,130 860,110 C920,90 960,60 1020,80 C1080,100 1120,140 1220,160 L1220,300 Z" fill="url(#mg)"/>
+    <path d="M0,300 L0,230 C60,210 100,190 160,170 C220,150 270,170 320,185 C380,200 430,175 490,155 C550,135 600,160 650,175 C710,190 760,170 820,155 C880,140 940,150 1000,165 C1060,180 1130,200 1220,210 L1220,300 Z" fill="#0d1413" opacity="0.8"/>
+  </svg>
+
+  <nav>
+    <div class="nav-logo">
+      <span>ЭТҮГЭН</span>
+      <span>ИХ СУРГУУЛЬ</span>
+    </div>
+    <ul class="nav-links">
+      <li>ХҮН БАЙХУЙ ТӨСӨЛ</li>
+      <li>ПХИ-201</li>
+      <li>TEAM — 4</li>
+    </ul>
+  </nav>
+
+  <div class="title-block">
+    <div class="main-title">Echo of Soul</div>
+    <div class="sub-tagline">when hope becomes a discipline</div>
+  </div>
+
+  <div class="handwritten">
+    when hope<br>becomes<br>a discipline
+  </div>
+
+  <div class="qr-corner">
+    <div class="qr-box">
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div>scan<br>to enter</div>
+  </div>
+
+  <div class="soul-btn-wrap">
+    <button class="soul-btn" onclick="openModal()">
+      ▾ &nbsp; Өнөөдрийг дүгнэх &nbsp; ▾
+    </button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-question">Өнөөдрийг 10-н оноогоор дүгнэвэл?</div>
+    <div class="score-grid" id="scoreGrid"></div>
+    <div class="result-area" id="resultArea">
+      <div class="result-score-display" id="resultScore"></div>
+      <div class="result-score-label">таны өнөөдрийн оноо</div>
+      <div class="result-quote" id="resultQuote"></div>
+    </div>
+    <button class="modal-close" onclick="closeModal()">✕ &nbsp; хаах</button>
+  </div>
+</div>
+
+<script>
+const grid = document.getElementById('scoreGrid');
+for (let i = 0; i <= 10; i++) {
+  const btn = document.createElement('button');
+  btn.className = 'score-btn';
+  btn.textContent = i;
+  btn.onclick = () => selectScore(i, btn);
+  grid.appendChild(btn);
+}
+
+function openModal() {
+  document.getElementById('modalOverlay').classList.add('active');
+  document.getElementById('resultArea').classList.remove('active');
+  document.querySelectorAll('.score-btn').forEach(b => b.classList.remove('selected'));
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('active');
+}
+
+async function selectScore(score, btn) {
+  document.querySelectorAll('.score-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+
+  const resultArea = document.getElementById('resultArea');
+  const resultScore = document.getElementById('resultScore');
+  const resultQuote = document.getElementById('resultQuote');
+
+  resultScore.textContent = score + ' / 10';
+  resultQuote.innerHTML = '<span class="loading-anim">Таны сэтгэлийг уншиж байна</span>';
+  resultArea.classList.add('active');
+
+  const mood = score <= 2 ? 'маш хэцүү, гунигтай, ядарсан'
+             : score <= 4 ? 'хэцүү, бага зэрэг уйдмаар'
+             : score <= 6 ? 'дундаж, тэнцвэртэй'
+             : score <= 8 ? 'сайн, идэвхтэй, тайван'
+             : 'гайхалтай, баяртай, хөнгөн сэтгэлтэй';
+
+  const prompt = `Би өнөөдрийг ${score}/10 оноотой дүгнэлээ. Сэтгэл байдал: ${mood}.
+
+Надад хоёр мөр л хэл:
+1-р мөр: Намайг дэмжих поэтик монгол quote (1-2 өгүүлбэр, гүн утгатай, урмын)
+2-р мөр: Яг 8 оронтой binary тоо (зөвхөн 0 ба 1, жишээ: 10110100)
+
+Өөр юу ч бичихгүй. Зөвхөн эдгээр хоёр мөр.`;
+
+  try {
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 1000,
+        messages: [{ role: "user", content: prompt }]
+      })
+    });
+    const data = await response.json();
+    const text = data.content.map(i => i.text || '').join('').trim();
+    const lines = text.split('\n').filter(l => l.trim());
+    const quoteLine = lines[0] || 'Өнөөдөр ч гэсэн та нэг алхам урагшилсан.';
+    const binaryLine = (lines[1] || '10110100').replace(/[^01]/g, '').substring(0, 8) || '10110100';
+
+    resultQuote.innerHTML = `
+      <div style="margin-bottom:18px;">${quoteLine}</div>
+      <div style="font-family:'Space Mono',monospace; font-size:24px; letter-spacing:0.35em; color:var(--accent); font-style:normal; opacity:0.9;">${binaryLine}</div>
+    `;
+  } catch(e) {
+    resultQuote.innerHTML = `
+      <div style="margin-bottom:18px;">Чи өнөөдөр амьд байна — энэ л хангалттай.</div>
+      <div style="font-family:'Space Mono',monospace; font-size:24px; letter-spacing:0.35em; color:var(--accent); font-style:normal;">10110100</div>
+    `;
+  }
+}
+
+document.getElementById('modalOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+</script>
+</body>
+</html>
